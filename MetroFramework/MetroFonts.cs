@@ -147,7 +147,8 @@ namespace MetroFramework
     {
         Small,
         Medium,
-        Tall
+        Tall,
+        Huge
     }
 
     public enum MetroButtonWeight
@@ -525,7 +526,15 @@ namespace MetroFramework
                 if (linkWeight == MetroButtonWeight.Bold)
                     return DefaultBold(16f);
             }
-
+            else if (linkSize == MetroButtonSize.Huge)
+            {
+                if (linkWeight == MetroButtonWeight.Light)
+                    return DefaultLight(22f);
+                if (linkWeight == MetroButtonWeight.Regular)
+                    return Default(22f);
+                if (linkWeight == MetroButtonWeight.Bold)
+                    return DefaultBold(22f);
+            }
             return Default(11f);
         }
     }

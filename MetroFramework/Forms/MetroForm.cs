@@ -73,6 +73,7 @@ namespace MetroFramework.Forms
 
     #endregion
 
+    
     public class MetroForm : Form, IMetroForm, IDisposable
     {
         #region Interface
@@ -235,8 +236,9 @@ namespace MetroFramework.Forms
             set
             {
                 backImage = value;
-                if(value != null) _image = ApplyInvert(new Bitmap(value));
-                Refresh();
+                //if(value != null) _image = ApplyInvert(new Bitmap(value));
+                _image = new Bitmap(value);
+                Invalidate(); /* Refresh(); */
             }
         }
 
@@ -248,7 +250,7 @@ namespace MetroFramework.Forms
             set
             {
                 backImagePadding = value;
-                Refresh();
+                Invalidate(); /* Refresh(); */
             }
         }
 
@@ -260,7 +262,7 @@ namespace MetroFramework.Forms
             set
             {
                 backMaxSize = value;
-                Refresh();
+                Invalidate(); /* Refresh(); */
             }
         }
 
@@ -273,7 +275,7 @@ namespace MetroFramework.Forms
             set
             {
                 backLocation = value;
-                Refresh();
+                Invalidate(); /* Refresh(); */
             }
         }
 
@@ -286,15 +288,17 @@ namespace MetroFramework.Forms
             set
             {
                 _imageinvert = value;
-                Refresh();
+                Invalidate(); /* Refresh(); */
             }
         }
         #endregion
 
         #region Constructor
-
+        private static float DpiScale = 1.0f;
         public MetroForm()
         {
+            //Font = new Font(Font.Name, 8.25f * 96f / CreateGraphics().DpiX, Font.Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
+            DpiScale = 96f / CreateGraphics().DpiX;
             SetStyle(ControlStyles.AllPaintingInWmPaint |
                      ControlStyles.OptimizedDoubleBuffer |
                      ControlStyles.ResizeRedraw |
@@ -449,6 +453,7 @@ namespace MetroFramework.Forms
             base.OnClosing(e);
         }
 
+        
         protected override void OnClosed(EventArgs e)
         {
             RemoveShadow();
@@ -503,6 +508,7 @@ namespace MetroFramework.Forms
             CreateShadow();
         }
 
+        [SecuritySafeCritical]
         protected override void OnActivated(EventArgs e)
         {
             base.OnActivated(e);
@@ -536,6 +542,7 @@ namespace MetroFramework.Forms
             UpdateWindowButtonPosition();
         }
 
+        [SecuritySafeCritical]
         protected override void WndProc(ref Message m)
         {
             if (DesignMode)
@@ -605,6 +612,7 @@ namespace MetroFramework.Forms
             //if (MaximumSize.Height > 0) pmmi->ptMaxTrackSize.y = MaximumSize.Height;
         }
 
+        [SecuritySafeCritical]
         private WinApi.HitTest HitTestNCA(IntPtr hwnd, IntPtr wparam, IntPtr lparam)
         {
             //Point vPoint = PointToClient(new Point((int)lparam & 0xFFFF, (int)lparam >> 16 & 0xFFFF));
@@ -780,7 +788,7 @@ namespace MetroFramework.Forms
                 }
             }
 
-            Refresh();
+            Invalidate(); /* Refresh(); */
         }
 
         private class MetroFormButton : Button, IMetroControl
@@ -984,7 +992,7 @@ namespace MetroFramework.Forms
                 }
 
                 e.Graphics.Clear(backColor);
-                Font buttonFont = new Font("Webdings", 9.25f);
+                Font buttonFont = new Font("Webdings", 9.25f * DpiScale );
                 TextRenderer.DrawText(e.Graphics, Text, buttonFont, ClientRectangle, foreColor, backColor, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter | TextFormatFlags.EndEllipsis);
             }
 
@@ -1559,5 +1567,6 @@ namespace MetroFramework.Forms
         }
 
         #endregion
+
     }
 }

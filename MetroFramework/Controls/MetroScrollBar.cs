@@ -364,7 +364,7 @@ namespace MetroFramework.Controls
                 else
                 {
                     ChangeThumbPosition(GetThumbPosition());
-                    Refresh();
+                    Invalidate(); /* Refresh(); */
                 }
             }
         }
@@ -395,7 +395,7 @@ namespace MetroFramework.Controls
                 else
                 {
                     ChangeThumbPosition(GetThumbPosition());
-                    Refresh();
+                    Invalidate(); /* Refresh(); */
                 }
             }
         }
@@ -484,7 +484,7 @@ namespace MetroFramework.Controls
                     dontUpdateColor = false;
                 }
 
-                Refresh();
+                Invalidate(); /* Refresh(); */
             }
         }
 
@@ -552,7 +552,7 @@ namespace MetroFramework.Controls
             WinApi.SendMessage(Handle, (int)WinApi.Messages.WM_SETREDRAW, true, 0);
             inUpdate = false;
             SetupScrollBar();
-            Refresh();
+            Invalidate(); /* Refresh(); */
         }
 
         #endregion
@@ -895,7 +895,7 @@ namespace MetroFramework.Controls
                     if (oldScrollValue != curValue)
                     {
                         OnScroll(ScrollEventType.ThumbTrack, oldScrollValue, curValue, scrollOrientation);
-                        Refresh();
+                        Invalidate(); /* Refresh(); */
                     }
                 }
             }
@@ -1064,7 +1064,7 @@ namespace MetroFramework.Controls
 
             ChangeThumbPosition(GetThumbPosition());
 
-            Refresh();
+            Invalidate(); /* Refresh(); */
         }
 
         private void ResetScrollStatus()
@@ -1072,7 +1072,7 @@ namespace MetroFramework.Controls
             bottomBarClicked = topBarClicked = false;
 
             StopTimer();
-            Refresh();
+            Invalidate(); /* Refresh(); */
         }
 
         private void ProgressTimerTick(object sender, EventArgs e)

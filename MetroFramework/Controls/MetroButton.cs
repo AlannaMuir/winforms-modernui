@@ -450,10 +450,14 @@ namespace MetroFramework.Controls
         {
             //This will check if control got the focus
             //If not thats the only it will remove the focus color
-            if (!isFocused)
-            {
+            //if (!isFocused)
+            //{
                 isHovered = false;
-            }
+            //}
+            //else
+            //{
+                //Console.WriteLine("?");
+            //}
 
             Invalidate();
 

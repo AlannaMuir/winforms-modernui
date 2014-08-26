@@ -191,7 +191,8 @@ namespace MetroFramework.Controls
                 if (value != -1 && (value < minimum || value > maximum))
                     throw new ArgumentOutOfRangeException("Progress value must be -1 or between Minimum and Maximum.", (Exception)null);
                 progress = value;
-                Refresh();
+                //Invalidate(); /* Refresh(); */
+                Invalidate();
             }
         }
 
@@ -210,7 +211,7 @@ namespace MetroFramework.Controls
                 minimum = value;
                 if (progress != -1 && progress < minimum)
                     progress = minimum;
-                Refresh();
+                Invalidate(); Invalidate(); /* Refresh(); */
             }
         }
 
@@ -227,7 +228,7 @@ namespace MetroFramework.Controls
                 maximum = value;
                 if (progress > maximum)
                     progress = maximum;
-                Refresh();
+                Invalidate(); /* Refresh(); */
             }
         }
 
@@ -237,7 +238,7 @@ namespace MetroFramework.Controls
         public bool EnsureVisible
         {
             get { return ensureVisible; }
-            set { ensureVisible = value; Refresh(); }
+            set { ensureVisible = value; Invalidate(); /* Refresh(); */ }
         }
 
         private float speed;
@@ -261,7 +262,7 @@ namespace MetroFramework.Controls
         public bool Backwards
         {
             get { return backwards; }
-            set { backwards = value; Refresh(); }
+            set { backwards = value; Invalidate(); /* Refresh(); */ }
         }
 
         private bool useCustomBackground = false;
@@ -298,7 +299,7 @@ namespace MetroFramework.Controls
         {
             progress = minimum;
             angle = 270;
-            Refresh();
+            Invalidate(); /* Refresh(); */
         }
 
         #endregion
@@ -310,7 +311,7 @@ namespace MetroFramework.Controls
             if (!DesignMode)
             {
                 angle += 6f * speed * (backwards ? -1 : 1);
-                Refresh();
+                Invalidate(); /* Refresh(); */
             }
         }
 

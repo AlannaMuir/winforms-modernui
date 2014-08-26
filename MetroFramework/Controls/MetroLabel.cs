@@ -188,7 +188,7 @@ namespace MetroFramework.Controls
         public MetroLabelSize FontSize
         {
             get { return metroLabelSize; }
-            set { metroLabelSize = value; Refresh(); }
+            set { metroLabelSize = value; Invalidate(); /* Refresh(); */ }
         }
 
         private MetroLabelWeight metroLabelWeight = MetroLabelWeight.Light;
@@ -197,7 +197,7 @@ namespace MetroFramework.Controls
         public MetroLabelWeight FontWeight
         {
             get { return metroLabelWeight; }
-            set { metroLabelWeight = value; Refresh(); }
+            set { metroLabelWeight = value; Invalidate(); /* Refresh(); */ }
         }
 
         private MetroLabelMode labelMode = MetroLabelMode.Default;
@@ -215,7 +215,7 @@ namespace MetroFramework.Controls
         public bool WrapToLine
         {
             get { return wrapToLine; }
-            set { wrapToLine = value; Refresh(); }
+            set { wrapToLine = value; Invalidate(); /* Refresh(); */ }
         }
 
         #endregion
@@ -378,7 +378,7 @@ namespace MetroFramework.Controls
                 UpdateBaseTextBox();
             }
             
-            base.Refresh();
+            base.Invalidate(); /* Refresh(); */
         }
 
         public override Size GetPreferredSize(Size proposedSize)

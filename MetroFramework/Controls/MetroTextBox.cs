@@ -208,7 +208,7 @@ namespace MetroFramework.Controls
             set 
             { 
                 textBoxIcon = value;
-                Refresh();
+                Invalidate(); /* Refresh(); */
             }
         }
 
@@ -223,7 +223,7 @@ namespace MetroFramework.Controls
             set
             {
                 textBoxIconRight = value;
-                Refresh();
+                Invalidate(); /* Refresh(); */
             }
         }
 
@@ -238,7 +238,7 @@ namespace MetroFramework.Controls
             set 
             { 
                 displayIcon = value;
-                Refresh();
+                Invalidate(); /* Refresh(); */
             }
         }
 
@@ -565,7 +565,7 @@ namespace MetroFramework.Controls
 
         public override void Refresh()
         {
-            base.Refresh();
+            base.Invalidate(); /* Refresh(); */
             UpdateBaseTextBox();
         }
 

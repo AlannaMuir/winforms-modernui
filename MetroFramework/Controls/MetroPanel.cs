@@ -260,6 +260,7 @@ namespace MetroFramework.Controls
                      ControlStyles.ResizeRedraw |
                      ControlStyles.UserPaint, true);
 
+
             Controls.Add(verticalScrollbar);
             Controls.Add(horizontalScrollbar);
 
@@ -292,6 +293,15 @@ namespace MetroFramework.Controls
         #endregion
 
         #region Overridden Methods
+
+        protected override void OnSizeChanged(EventArgs e)
+        {
+            if (!DesignMode && IsHandleCreated)
+                BeginInvoke((MethodInvoker)delegate { base.OnSizeChanged(e); });
+            else
+                base.OnSizeChanged(e);
+
+        }
 
         protected override void OnPaintBackground(PaintEventArgs e)
         {

@@ -247,7 +247,7 @@ namespace MetroFramework.Controls
         public MetroTileTextSize TileTextFontSize
         {
             get { return tileTextFontSize; }
-            set { tileTextFontSize = value; Refresh(); }
+            set { tileTextFontSize = value; Invalidate(); /* Refresh(); */ }
         }
 
         private MetroTileTextWeight tileTextFontWeight = MetroTileTextWeight.Light;
@@ -256,7 +256,7 @@ namespace MetroFramework.Controls
         public MetroTileTextWeight TileTextFontWeight
         {
             get { return tileTextFontWeight; }
-            set { tileTextFontWeight = value; Refresh(); }
+            set { tileTextFontWeight = value; Invalidate(); /* Refresh(); */ }
         }
 
         private bool isHovered = false;

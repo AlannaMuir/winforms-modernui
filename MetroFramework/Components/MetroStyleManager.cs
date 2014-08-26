@@ -245,7 +245,7 @@ namespace MetroFramework.Components
                 UpdateControl(ctrl.ContextMenuStrip);
             }
 
-            ctrl.Refresh();
+            ctrl.Invalidate(); /* Refresh(); */
         }
 
         private void ApplyTheme(IMetroControl control)

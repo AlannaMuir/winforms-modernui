@@ -28,7 +28,7 @@ using System.Security;
 
 namespace MetroFramework.Native
 {
-    [SuppressUnmanagedCodeSecurity]
+    //[SuppressUnmanagedCodeSecurity]
     internal class DwmApi
     {
         #region Structs

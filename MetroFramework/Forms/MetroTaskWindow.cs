@@ -177,7 +177,7 @@ namespace MetroFramework.Forms
                 controlContainer.AutoScroll = false;
                 controlContainer.HorizontalScrollbar = false;
                 controlContainer.VerticalScrollbar = false;
-                controlContainer.Refresh();
+                controlContainer.Invalidate(); /* Refresh(); */
 
                 if (StyleManager != null)
                 {
